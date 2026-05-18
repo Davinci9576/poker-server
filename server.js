@@ -8,7 +8,7 @@ let leaderboard = [];
 // POST → add score
 app.post("/score", (req, res) => {
     try {
-        console.log("Received:", req.body); // 🔍 debug
+        console.log("Received:", req.body);
 
         const { name, money } = req.body;
 
@@ -30,6 +30,28 @@ app.post("/score", (req, res) => {
 app.get("/leaderboard", (req, res) => {
     const sorted = [...leaderboard].sort((a, b) => b.money - a.money);
     res.json(sorted);
+});
+
+app.post("/register", (req, res) => {
+
+    const { username, password } = req.body;
+
+    console.log("Register:", username, password);
+
+    res.json({
+        success: true
+    });
+});
+
+app.post("/login", (req, res) => {
+
+    const { username, password } = req.body;
+
+    console.log("Login:", username, password);
+
+    res.json({
+        success: true
+    });
 });
 
 const PORT = process.env.PORT || 3000;
