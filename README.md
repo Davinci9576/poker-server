@@ -1,89 +1,173 @@
-# 🎰 Casino Poker Engine (C++)
+# 🎰 Texas Poker
 
 ## 🚀 Overview
 
-A modular Texas Hold'em poker engine implemented in C++, designed with scalability, maintainability, and clean architecture in mind.
+Texas Poker is a full-stack Texas Hold'em Poker application developed using C++, SFML, Node.js, Express, and MySQL.
 
-This project goes beyond a simple console game—it demonstrates structured system design, multi-file organization, and advanced game logic implementation.
+The project combines desktop game development with cloud-based backend infrastructure, allowing players to create accounts, authenticate, save progress, and compete through an online leaderboard. The backend is deployed on Railway and connected to a cloud-hosted MySQL database, enabling persistent player statistics and account management across sessions.
+
+This project demonstrates software engineering principles including client-server architecture, API integration, database design, deployment, and object-oriented programming.
 
 ---
 
 ## 🧠 Core Features
 
-* ♠️ Full Texas Hold'em game flow
-* 🃏 7-card hand evaluation system
-* 🧮 Ranking logic (pairs, straights, flushes, full house, etc.)
-* 🎲 Randomized deck generation and shuffling
-* 👥 Multi-player support
-* 💰 Pot and betting system (in progress)
-* 💾 File handling integration planned (persistent game state)
+### ♠️ Texas Hold'em Gameplay
+
+* Complete Texas Hold'em game flow
+* Multi-player support
+* Betting system
+* Pot management
+* Deck generation and shuffling
+* Turn management
+
+### 🃏 Advanced Hand Evaluation
+
+* High Card
+* Pair
+* Two Pair
+* Three of a Kind
+* Straight
+* Flush
+* Full House
+* Four of a Kind
+* Straight Flush
+* Royal Flush
+
+### 🌐 Online Infrastructure
+
+* User registration system
+* User authentication and login
+* Persistent player profiles
+* Cloud-hosted database
+* Online leaderboard
+* Progress synchronization
+
+### 💾 Persistent Player Data
+
+* Player balance tracking
+* Win/loss statistics
+* Win rate calculation
+* Account-based progression
 
 ---
 
-## 🧱 Architecture (Multi-file Design)
+## 🏗️ Architecture
 
-This project is structured using a modular, multi-file approach:
+### Client (C++ / SFML)
 
-* `main.cpp` → Entry point and game loop
-* `deck.cpp / deck.h` → Deck creation and shuffling
-* `player.cpp / player.h` → Player logic and state
-* `hand_evaluator.cpp / hand_evaluator.h` → Core ranking algorithm
-* `utils.cpp / utils.h` → Helper functions
+Responsible for:
 
-This separation ensures:
+* User Interface
+* Game Logic
+* Player Interaction
+* API Communication
 
-* scalability
-* readability
-* easier debugging and extension
+### Backend (Node.js / Express)
 
----
+Responsible for:
 
-## ⚙️ Technologies & Concepts
+* User Authentication
+* Database Operations
+* Leaderboard Management
+* Progress Updates
 
-* C++ (STL: vector, map, algorithm)
-* Object-oriented design
-* Dynamic memory management
-* File I/O (`fstream`) *(planned integration)*
-* Algorithmic problem solving
+### Database (MySQL)
 
----
+Stores:
 
-## ▶️ How to Run
+* User Accounts
+* Password Credentials
+* Player Statistics
+* Balance Information
+* Leaderboard Data
 
-### Compile
+### Cloud Infrastructure
 
-```bash
-g++ *.cpp -o poker
-```bash
-./poker
-```
-### Execute
-
-
-
-## 📈 Future Improvements
-
-* 🌐 Online leaderboard using Web API
-* 🤖 AI-based opponent logic
-* 🎨 GUI version (Qt / SDL)
-* 🔐 Persistent player data (bankroll system)
-* 🧪 Unit testing for hand evaluation
+* Backend deployed on Railway
+* Cloud-hosted MySQL database
+* Internet-connected client-server communication
 
 ---
 
-## 💼 Why This Project Matters
+## ⚙️ Technologies Used
 
-This project demonstrates:
+### Frontend
 
-* ability to design non-trivial systems
-* understanding of game logic and edge cases
-* clean code organization across multiple files
-* readiness for real-world C++ development environments
+* C++
+* SFML
+
+### Backend
+
+* Node.js
+* Express.js
+
+### Database
+
+* MySQL
+
+### Cloud & Deployment
+
+* Railway
+* REST APIs
+
+### Development Tools
+
+* Git
+* GitHub
+* Inno Setup
 
 ---
 
-## 📌 Author
+## 📂 Project Structure
 
-Developed by a motivated engineering student focused on building scalable systems and mastering low-level programming.
+API/ → Client-server communication
+
+BackEnd/ → Core game systems
+
+Core/ → Engine functionality
+
+Screens/ → User interface screens
+
+Source/ → Application entry points
+
+Assets/ → Fonts, textures, and resources
+
+poker-server/ → Node.js backend services
+
+Installer/ → Application installer configuration
 
 ---
+
+## 🎯 Learning Outcomes
+
+This project provided hands-on experience with:
+
+* Object-Oriented Programming
+* Full-Stack Development
+* REST API Design
+* Database Integration
+* Cloud Deployment
+* User Authentication
+* Software Packaging and Distribution
+* Git Version Control
+* Debugging and Software Maintenance
+
+---
+
+## 📸 Screenshots
+
+(Add gameplay, login, leaderboard, and account system screenshots here)
+
+---
+
+## 📥 Download
+
+The game can be downloaded and installed through the project's itch.io release page.
+Download link: https://irmvvn-d-vinci.itch.io/texas-poker
+
+---
+
+## 👨‍💻 Author
+
+Developed by Irmuun Naranbaatar as a full-stack software engineering project combining game development, backend infrastructure, cloud deployment, and database integration.
