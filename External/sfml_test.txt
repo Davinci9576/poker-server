@@ -1,0 +1,164 @@
+#include <SFML/Graphics.hpp>
+#include <string>
+
+enum GameState{
+    MENU,
+    PLAYING
+};
+int main(){
+    float speedBall=300.0f;
+    float speedCard=200.0f;
+    sf::Clock clock;
+    GameState currentState=MENU;
+    sf::RenderWindow window(
+        sf::VideoMode(800, 600),
+        "Game"
+    );
+    sf::Texture texture;
+    if(!texture.loadFromFile("R.png")){
+        return -1;
+    }
+    sf::Sprite sprite;
+    sprite.setTexture(texture);
+    sprite.setPosition(300.f, 200.f);
+    sprite.setScale(0.2f, 0.2f);
+    sf::RectangleShape card;
+    card.setFillColor(sf::Color::Blue);
+    card.setPosition(400, 300);
+    card.setSize(sf::Vector2f(100.f, 100.f));
+    bool cardBlue=true;
+
+    sf::CircleShape ball;
+    ball.setFillColor(sf::Color::Green);
+    ball.setPosition(100.f, 100.f);
+    ball.setRadius(50.f);
+    bool wasColliding=false;
+    bool isColliding=false;
+    bool isBlue=true;
+    sf::Font font;
+    font.loadFromFile("Roboto-Regular.ttf");
+
+    sf::Text collisiontext;
+    collisiontext.setFont(font);
+    collisiontext.setString("Collision Demo");
+    collisiontext.setCharacterSize(30);
+    collisiontext.setFillColor(sf::Color::White);
+    collisiontext.setPosition(250.f, 20.f);
+
+    sf::Text cardtext;
+    cardtext.setFont(font);
+    cardtext.setString("Card: (400, 300)");
+    cardtext.setCharacterSize(30);
+    cardtext.setFillColor(sf::Color::White);
+    cardtext.setPosition(400.f, 30.f);
+
+    sf::Text balltext;
+    balltext.setFont(font);
+    balltext.setString("Ball: (100, 100)");
+    balltext.setCharacterSize(30);
+    balltext.setFillColor(sf::Color::White);
+    balltext.setPosition(20.f, 20.f);
+
+    sf::Text fpsText;
+    fpsText.setFont(font);
+    fpsText.setCharacterSize(30);
+    fpsText.setFillColor(sf::Color::White);
+    fpsText.setPosition(20, 20);
+
+
+    while(window.isOpen()){
+        float dt=clock.restart().asSeconds();
+        float fps=1.0f/dt;
+        fpsText.setString("FPS: "+std::to_string((int)fps));
+        sf::Event event;
+        while(window.pollEvent(event)){
+            if(event.type==sf::Event::Closed){
+                window.close();
+            }
+            if(event.type==sf::Event::MouseButtonPressed && event.mouseButton.button==sf::Mouse::Left){
+                sf::Vector2i mousePos=sf::Mouse::getPosition(window);
+                sf::Vector2f worldPos=window.mapPixelToCoords(mousePos);
+                if(card.getGlobalBounds().contains(worldPos)){
+                    if(cardBlue){
+                        card.setFillColor(sf::Color::White);
+                        cardBlue=false;
+                    }else{
+                        card.setFillColor(sf::Color::Blue);
+                        cardBlue=true;
+                    }
+                }
+            }
+        }
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
+            card.move(-speedCard*dt, 0.f);
+        }
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
+            card.move(speedCard*dt, 0.f);
+        }
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
+            card.move(0.f, -speedCard*dt);
+        }
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
+            card.move(0.f, speedCard*dt);
+        }
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
+            ball.move(-speedBall*dt, 0.f);
+        }
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
+            ball.move(speedBall*dt, 0.f);
+        }
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::W)){
+            ball.move(0.f, -speedBall*dt);
+        }
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
+            ball.move(0.f, speedBall*dt);
+        }
+        isColliding=ball.getGlobalBounds().intersects(
+            card.getGlobalBounds()
+        );
+        if(isColliding && !wasColliding){
+            if(isBlue){
+                card.setFillColor(sf::Color::White);
+                collisiontext.setString("COLLISION");
+                isBlue=false;
+            }else{
+                card.setFillColor(sf::Color::Blue);
+                collisiontext.setString("Collision Demo");
+                isBlue=true;
+            }
+        }
+        balltext.setString("Ball: ("+std::to_string((int)ball.getPosition().x)+", "
+        +std::to_string((int)ball.getPosition().y)+")");
+        cardtext.setString("Card: ("+std::to_string((int)card.getPosition().x)+", "+std::to_string((int)card.getPosition().y)+")");
+        if(!isColliding){
+            wasColliding=false;
+        }else{
+            wasColliding=true;
+        }
+        switch(currentState){
+            case MENU:
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)){
+                currentState=PLAYING;
+            }
+            window.clear(sf::Color::Blue);
+        break;
+
+        case PLAYING:
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
+            currentState=MENU;
+        }
+        window.clear(sf::Color::Green);
+        break;
+    }
+        sprite.rotate(0.05f);
+        window.draw(fpsText);
+        window.draw(ball);
+        window.draw(card);  
+        window.draw(cardtext);
+        window.draw(balltext);
+        window.draw(sprite);
+        window.draw(collisiontext);
+        window.display();
+    }
+    return 0;
+}
