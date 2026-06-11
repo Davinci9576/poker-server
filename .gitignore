@@ -1,0 +1,22 @@
+# Executables
+*.exe
+
+# DLLs
+*.dll
+
+# Object files
+*.o
+*.obj
+
+# Build folders
+Installer/
+
+# Node modules
+node_modules/
+
+# Visual Studio
+.vs/
+*.suo
+
+# Logs
+*.log
