@@ -157,9 +157,47 @@ This project provided hands-on experience with:
 
 ## 📸 Screenshots
 
-(Add gameplay, login, leaderboard, and account system screenshots here)
+### Login System
 
----
+![Login Screen](images/loginScreen.png)
+
+User authentication and account registration system connected to a cloud-hosted backend.
+
+### Gameplay
+
+![Gameplay](images/GamePlay.png)
+
+Texas Hold'em gameplay featuring betting mechanics, pot management, and hand evaluation.
+
+### Leaderboard
+
+![Leaderboard](images/Leaderboard.png)
+
+Online leaderboard synchronized with player statistics stored in the database.
+
+### System Architecture
+
+![Architecture](images/architecture-diagram.png)
+
+Full-stack architecture connecting the C++ client, backend API, and cloud-hosted database.
+
+### Railway Deployment
+
+![Railway](images/Railway_deployment.png)
+
+Backend services and database deployed on Railway cloud infrastructure.
+
+### Database
+
+![Database](images/Database.png)
+
+Persistent storage of user accounts, balances, win/loss statistics, and leaderboard data.
+
+### Profile System
+
+![Profile](images/Profile.png)
+
+Account management system integrated with the backend infrastructure, allowing players to view their balance, statistics, win rate, and persistent gameplay data stored in the MySQL database.
 
 ## 📥 Download
 
